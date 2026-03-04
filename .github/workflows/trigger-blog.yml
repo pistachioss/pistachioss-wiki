@@ -2,21 +2,31 @@ name: Trigger Blog Deployment
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   trigger-blog-rebuild:
     runs-on: ubuntu-latest
-
     steps:
       - name: Trigger Blog Repository Workflow
         run: |
-          curl -X POST \
-            -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
-            -H "Accept: application/vnd.github.v3+json" \
+          set -euo pipefail
+          response=$(curl -sS -w "\n%{http_code}" -X POST \
+            -H "Authorization: Bearer ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
             https://api.github.com/repos/pistachioss/pistachioss.github.io/dispatches \
-            -d '{"event_type":"wiki_updated"}'
+            -d '{"event_type":"wiki_updated"}')
+          
+          body=$(echo "$response" | sed '$d')
+          code=$(echo "$response" | tail -n1)
+
+          echo "HTTP: $code"
+          echo "BODY: $body"
+
+          if [ "$code" -lt 200 ] || [ "$code" -ge 300 ]; then
+            echo "Dispatch failed"
+            exit 1
+          fi
 
       - name: Workflow Triggered
         run: echo "✅ Blog deployment triggered successfully!"
