@@ -1,12 +1,42 @@
 # Wixo 主题配置
 
-# 菜单
+slogan: "Writing codes & growing tao."
+
+# 颜色主题（和博客保持一致）
+theme: cerulean
+inverse: true
+
+# ===== 菜单配置（关键修改）=====
 menu:
-  首页: /wiki
-  归档: /wiki/archives
-  分类: /wiki/categories
-  标签: /wiki/tags
-  关于: /about
+  - title: Archives
+    url: /wiki/archives
+    intro: "All wiki articles."
+    icon: "fa fa-archive"
+  - title: Categories
+    url: /wiki/categories
+    intro: "All categories."
+    icon: "fa fa-folder"
+  - title: Tags
+    url: /wiki/tags
+    intro: "All tags."
+    icon: "fa fa-tags"
+  - title: Wiki              # 当前页面标识
+    url: /wiki
+    intro: "My knowledge base."
+    icon: "fa fa-book"
+  - title: About
+    url: /about
+    intro: "About me."
+    icon: "fa fa-user"
+
+# 菜单
+#menu:
+#  首页: /wiki
+#  归档: /wiki/archives
+#  分类: /wiki/categories
+#  标签: /wiki/tags
+#  关于: /about
+
 
 # 侧边栏组件
 widgets:
@@ -17,6 +47,8 @@ widgets:
 
 # 摘要链接文字
 excerpt_link: 阅读全文...
+fancybox: true
+rss: atom.xml
 
 # 社交链接
 social:
