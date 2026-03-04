@@ -1,16 +1,10 @@
 ---
-title: getting-started
-date: 2026-03-04 09:03:29
-tags:
----
-
----
 title: Wiki 入门指南
 date: 2025-03-04 12:00:00
 categories:
-- 使用指南
-  tags:
-- Wiki
+  - Doc
+tags:
+  - Wiki
 ---
 
 欢迎来到知识库！
